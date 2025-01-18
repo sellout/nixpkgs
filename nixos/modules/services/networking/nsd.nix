@@ -1042,7 +1042,7 @@ in
       script = signZones;
 
       postStop = ''
-        /run/current-system/systemd/bin/systemctl kill -s SIGHUP nsd.service
+        ${config.environment.systemDir}/systemd/bin/systemctl kill -s SIGHUP nsd.service
       '';
     };
 

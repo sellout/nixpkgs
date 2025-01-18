@@ -80,7 +80,7 @@ in
       };
 
       systemdExecutable = mkOption {
-        default = "/run/current-system/systemd/lib/systemd/systemd";
+        default = "${config.environment.systemDir}/systemd/lib/systemd/systemd";
         type = types.str;
         description = ''
           The program to execute to start systemd.

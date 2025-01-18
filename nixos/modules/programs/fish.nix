@@ -311,7 +311,7 @@ in
 
       {
         shells = [
-          "/run/current-system/sw/bin/fish"
+          "${config.environment.systemDir}/sw/bin/fish"
           (lib.getExe cfg.package)
         ];
       }

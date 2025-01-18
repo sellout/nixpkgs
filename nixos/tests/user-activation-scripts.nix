@@ -1,4 +1,5 @@
-{ lib, ... }:
+
+  { lib, ... }:
 {
   name = "user-activation-scripts";
   meta = with lib.maintainers; {
@@ -33,7 +34,7 @@
     verify_user_activation_run_count(1)
 
     machine.succeed("touch /home/alice/file-to-remove")
-    machine.succeed("/run/current-system/bin/switch-to-configuration test")
+    machine.succeed("${config.environment.systemDir}/bin/switch-to-configuration test")
     verify_user_activation_run_count(2)
     machine.succeed("[[ ! -f /home/alice/file-to-remove ]] || false")
   '';

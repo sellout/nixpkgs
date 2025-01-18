@@ -54,8 +54,8 @@ let
 
   defaultConfig = {
     General = {
-      HaltCommand = "/run/current-system/systemd/bin/systemctl poweroff";
-      RebootCommand = "/run/current-system/systemd/bin/systemctl reboot";
+      HaltCommand = "${config.environment.systemDir}/systemd/bin/systemctl poweroff";
+      RebootCommand = "${config.environment.systemDir}/systemd/bin/systemctl reboot";
       Numlock = if cfg.autoNumlock then "on" else "none"; # on, off none
 
       # Implementation is done via pkgs/applications/display-managers/sddm/sddm-default-session.patch
@@ -72,8 +72,8 @@ let
 
     Theme = {
       Current = cfg.theme;
-      ThemeDir = "/run/current-system/sw/share/sddm/themes";
-      FacesDir = "/run/current-system/sw/share/sddm/faces";
+      ThemeDir = "${config.environment.systemDir}/sw/share/sddm/themes";
+      FacesDir = "${config.environment.systemDir}/sw/share/sddm/faces";
     }
     // optionalAttrs (cfg.theme == "breeze") {
       CursorTheme = "breeze_cursors";
@@ -83,7 +83,7 @@ let
     Users = {
       MaximumUid = config.ids.uids.nixbld;
       HideUsers = concatStringsSep "," dmcfg.hiddenUsers;
-      HideShells = "/run/current-system/sw/bin/nologin";
+      HideShells = "${config.environment.systemDir}/sw/bin/nologin";
     };
 
     Wayland = {
@@ -361,7 +361,7 @@ in
 
     services.displayManager = {
       enable = true;
-      execCmd = "exec /run/current-system/sw/bin/sddm";
+      execCmd = "exec ${config.environment.systemDir}/sw/bin/sddm";
     };
 
     security.pam.services = {

@@ -1,4 +1,5 @@
 
+  
   {
   lib,
   pkgs,
@@ -64,7 +65,7 @@ in
     client.succeed(f"ssh {MOCKUSER}@server 'true'")
     # but we shouldn't be able to sudo
     client.fail(
-        f"ssh {MOCKUSER}@server '${config.security.wrapperDir}/sudo /run/current-system/sw/bin/id' | grep -q 'root'"
+        f"ssh {MOCKUSER}@server '${config.security.wrapperDir}/sudo ${config.environment.systemDir}/sw/bin/id' | grep -q 'root'"
     )
 
     # we should also be able to log in as mockadmin
@@ -76,7 +77,7 @@ in
 
     # and we should be able to sudo
     client.succeed(
-        f"ssh {MOCKADMIN}@server '${config.security.wrapperDir}/sudo /run/current-system/sw/bin/id' | grep -q 'root'"
+        f"ssh {MOCKADMIN}@server '${config.security.wrapperDir}/sudo ${config.environment.systemDir}/sw/bin/id' | grep -q 'root'"
     )
   '';
 }

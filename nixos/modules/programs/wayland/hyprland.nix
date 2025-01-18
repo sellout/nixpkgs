@@ -91,7 +91,7 @@ in
 
         systemd = lib.mkIf cfg.systemd.setPath.enable {
           user.extraConfig = ''
-            DefaultEnvironment="PATH=${config.security.wrapperDir}:/etc/profiles/per-user/%u/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:$PATH"
+            DefaultEnvironment="PATH=${config.security.wrapperDir}:/etc/profiles/per-user/%u/bin:/nix/var/nix/profiles/default/bin:${config.environment.systemDir}/sw/bin:$PATH"
           '';
         };
       }
@@ -103,7 +103,7 @@ in
           hyprland = {
             prettyName = "Hyprland";
             comment = "Hyprland compositor managed by UWSM";
-            binPath = "/run/current-system/sw/bin/start-hyprland";
+            binPath = "${config.environment.systemDir}/sw/bin/start-hyprland";
           };
         };
       })

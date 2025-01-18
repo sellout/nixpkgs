@@ -33,7 +33,7 @@ in
         '';
         default = { };
         example = {
-          PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig";
+          PKG_CONFIG_PATH = "${config.environment.systemDir}/sw/lib/pkgconfig";
         };
       };
 

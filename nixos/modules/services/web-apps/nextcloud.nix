@@ -1559,7 +1559,7 @@ in
             phpEnv = {
               CREDENTIALS_DIRECTORY = "/run/phpfpm-nextcloud/credentials/";
               NEXTCLOUD_CONFIG_DIR = "${datadir}/config";
-              PATH = "${config.security.wrapperDir}:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:/usr/bin:/bin";
+              PATH = "${config.security.wrapperDir}:/nix/var/nix/profiles/default/bin:${config.environment.systemDir}/sw/bin:/usr/bin:/bin";
             };
             settings =
               lib.mapAttrs (name: lib.mkDefault) {

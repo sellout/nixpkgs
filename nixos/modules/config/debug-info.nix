@@ -49,7 +49,7 @@
 
       environment.extraOutputsToInstall = [ "debug" ];
 
-      environment.variables.NIX_DEBUG_INFO_DIRS = [ "/run/current-system/sw/lib/debug" ];
+      environment.variables.NIX_DEBUG_INFO_DIRS = [ "${config.environment.systemDir}/sw/lib/debug" ];
 
     })
     (lib.mkIf (config.environment.debuginfodServers != [ ]) {

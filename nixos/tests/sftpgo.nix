@@ -406,7 +406,7 @@ in
           # Eve should not get the file from shared folder
           client.fail("scp -P ${toString sftpPort} eve@server:/shared/${sharedFile.name}")
 
-      server.succeed("/run/current-system/specialisation/privilegedPorts/bin/switch-to-configuration test")
+      server.succeed("${config.environment.systemDir}/specialisation/privilegedPorts/bin/switch-to-configuration test")
 
       client.wait_until_succeeds("sftp -P 22 -b ${pkgs.writeText "get-hello-world.txt" ''
         get /private/${testFile.name}

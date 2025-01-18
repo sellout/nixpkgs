@@ -263,7 +263,7 @@ in
           type = lib.types.str;
           default = "";
           description = "MiniMagick font path";
-          example = "/run/current-system/sw/share/X11/fonts/LiberationSans-Regular.ttf";
+          example = "${config.environment.systemDir}/sw/share/X11/fonts/LiberationSans-Regular.ttf";
         };
       };
     };

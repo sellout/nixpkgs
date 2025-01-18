@@ -371,7 +371,7 @@ in
 
           # nixos-rebuild also requires a "system" profile and an /etc/NIXOS tag.
           touch /etc/NIXOS
-          ${config.nix.package.out}/bin/nix-env -p /nix/var/nix/profiles/system --set /run/current-system
+          ${config.nix.package.out}/bin/nix-env -p /nix/var/nix/profiles/system --set ${config.environment.systemDir}
 
           # Prevents this from running on later boots.
           rm -f ${nixPathRegistrationFile}

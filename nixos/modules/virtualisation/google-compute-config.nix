@@ -124,7 +124,7 @@ in
 
   environment.etc."default/instance_configs.cfg".text = ''
     [Accounts]
-    useradd_cmd = useradd -m -s /run/current-system/sw/bin/bash -p * {user}
+    useradd_cmd = useradd -m -s ${config.environment.systemDir}/sw/bin/bash -p * {user}
 
     [Daemons]
     accounts_daemon = ${boolToString config.users.mutableUsers}

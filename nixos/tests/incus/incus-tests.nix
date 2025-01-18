@@ -134,8 +134,12 @@ in
     +
       # python
       ''
+        import json
+
+        def wait_for_instance(name: str, project: str = "default"):
+            machine.wait_until_succeeds(f"incus exec {name} --disable-stdin --force-interactive --project {project} -- ${config.environment.systemDir}
         server = IncusHost(machine)
-      ''
+''
     +
       lib.optionalString cfg.network.ovs # python
         ''

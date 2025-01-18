@@ -64,7 +64,7 @@ pkgs.testers.nixosTest {
         # Create a profile to pretend we are on non-NixOS
 
         print(machine.succeed("nix --version"))
-        print(machine.succeed("nix-env -i /run/current-system/sw/bin/nix -p /root/.local"))
+        print(machine.succeed("nix-env -i ${config.environment.systemDir}/sw/bin/nix -p /root/.local"))
 
     with subtest("nix-upgrade"):
         print(machine.succeed("nix upgrade-nix --nix-store-paths-url file://${fallback-paths-external}/fallback-paths.nix --profile /root/.local"))
@@ -90,7 +90,7 @@ pkgs.testers.nixosTest {
 
     with subtest("upgrade-via-switch-to-configuration"):
         # not using nixos-rebuild due to nix-instantiate being called and forcing all drv's to be rebuilt
-        print(machine.succeed("/run/current-system/specialisation/newer-nix/bin/switch-to-configuration switch"))
+        print(machine.succeed("${config.environment.systemDir}/specialisation/newer-nix/bin/switch-to-configuration switch"))
         result = machine.succeed("nix --version")
         print(result)
 

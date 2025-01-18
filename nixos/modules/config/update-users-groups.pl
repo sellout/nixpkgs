@@ -254,7 +254,7 @@ foreach my $u (@{$spec->{users}}) {
             $u->{shell} = $existing->{shell};
         } else {
             warn "warning: no declarative or previous shell for ‘$name’, setting shell to nologin\n";
-            $u->{shell} = "/run/current-system/sw/bin/nologin";
+            $u->{shell} = "${config.environment.systemDir}/sw/bin/nologin";
         }
     }
 

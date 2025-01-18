@@ -36,11 +36,11 @@
   testScript = ''
     start_all()
 
-    docker.wait_for_unit("sockets.target")
-    docker.succeed("tar cv --files-from /dev/null | docker import - scratchimg")
-    docker.succeed(
-        "docker run -d --name=sleeping -v /nix/store:/nix/store -v /run/current-system/sw/bin:/bin scratchimg /bin/sleep 10"
-    )
+      docker.wait_for_unit("sockets.target")
+      docker.succeed("tar cv --files-from /dev/null | docker import - scratchimg")
+      docker.succeed(
+          "docker run -d --name=sleeping -v /nix/store:/nix/store -v ${config.environment.systemDir}/sw/bin:/bin scratchimg /bin/sleep 10"
+      )
     docker.succeed("docker ps | grep sleeping")
     docker.succeed("sudo -u hasprivs docker ps")
     docker.fail("sudo -u noprivs docker ps")

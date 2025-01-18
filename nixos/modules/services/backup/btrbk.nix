@@ -80,15 +80,15 @@ let
       }
       # for ssh, they are not the same than the one hard coded in ${pkgs.btrbk}
       {
-        command = "/run/current-system/sw/bin/btrfs";
+        command = "${config.environment.systemDir}/sw/bin/btrfs";
         options = [ "NOPASSWD" ];
       }
       {
-        command = "/run/current-system/sw/bin/mkdir";
+        command = "${config.environment.systemDir}/sw/bin/mkdir";
         options = [ "NOPASSWD" ];
       }
       {
-        command = "/run/current-system/sw/bin/readlink";
+        command = "${config.environment.systemDir}/sw/bin/readlink";
         options = [ "NOPASSWD" ];
       }
     ];
@@ -304,9 +304,9 @@ in
           (doasCmdNoPass "${pkgs.coreutils}/bin/mkdir")
           (doasCmdNoPass "${pkgs.coreutils}/bin/readlink")
           # for ssh, they are not the same than the one hard coded in ${pkgs.btrbk}
-          (doasCmdNoPass "/run/current-system/sw/bin/btrfs")
-          (doasCmdNoPass "/run/current-system/sw/bin/mkdir")
-          (doasCmdNoPass "/run/current-system/sw/bin/readlink")
+          (doasCmdNoPass "${config.environment.systemDir}/sw/bin/btrfs")
+          (doasCmdNoPass "${config.environment.systemDir}/sw/bin/mkdir")
+          (doasCmdNoPass "${config.environment.systemDir}/sw/bin/readlink")
 
           # doas matches command, not binary
           (doasCmdNoPass "btrfs")

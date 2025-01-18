@@ -71,6 +71,17 @@ in
 
     environment = {
 
+      systemDir = lib.mkOption {
+        type = lib.types.path;
+        default = "/run/current-system";
+        internal = true;
+        description = ''
+          This option defines the path to the system software. Some packages
+          don’t yet allow it to be overridden (generally because of hardcoded
+          values in non-Nix files), but those _should_ `assert` when it is.
+        '';
+      };
+
       systemPackages = lib.mkOption {
         type = lib.types.listOf lib.types.package;
         default = [ ];

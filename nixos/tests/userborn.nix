@@ -113,7 +113,7 @@ in
       print(machine.succeed("pwck -r"))
 
 
-    machine.succeed("/run/current-system/specialisation/new-generation/bin/switch-to-configuration switch")
+    machine.succeed("${config.environment.systemDir}/specialisation/new-generation/bin/switch-to-configuration switch")
 
 
     with subtest("root user password is updated"):

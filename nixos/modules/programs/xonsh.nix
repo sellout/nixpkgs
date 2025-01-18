@@ -101,7 +101,7 @@ in
     environment.systemPackages = [ package ];
 
     environment.shells = [
-      "/run/current-system/sw/bin/xonsh"
+      "${config.environment.systemDir}/sw/bin/xonsh"
       "${lib.getExe package}"
     ];
   };

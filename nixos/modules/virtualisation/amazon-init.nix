@@ -95,7 +95,7 @@ in
 
       path = [
         "/run/wrappers"
-        "/run/current-system/sw"
+        "${config.environment.systemDir}/sw"
       ];
 
       restartIfChanged = false;

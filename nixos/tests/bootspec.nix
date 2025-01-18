@@ -44,7 +44,7 @@ in
       machine.start()
       machine.wait_for_unit("multi-user.target")
 
-      machine.succeed("test -e /run/current-system/boot.json")
+      machine.succeed("test -e ${config.environment.systemDir}/boot.json")
     '';
   };
 
@@ -66,7 +66,7 @@ in
       machine.start()
       machine.wait_for_unit("multi-user.target")
 
-      machine.succeed("test -e /run/current-system/boot.json")
+      machine.succeed("test -e ${config.environment.systemDir}/boot.json")
     '';
   };
 
@@ -87,7 +87,7 @@ in
       machine.start()
       machine.wait_for_unit("multi-user.target")
 
-      machine.succeed("test -e /run/current-system/boot.json")
+      machine.succeed("test -e ${config.environment.systemDir}/boot.json")
     '';
   };
 
@@ -109,9 +109,9 @@ in
       machine.start()
       machine.wait_for_unit("multi-user.target")
 
-      machine.succeed("test -e /run/current-system/boot.json")
+      machine.succeed("test -e ${config.environment.systemDir}/boot.json")
 
-      bootspec = json.loads(machine.succeed("jq -r '.\"org.nixos.bootspec.v1\"' /run/current-system/boot.json"))
+      bootspec = json.loads(machine.succeed("jq -r '.\"org.nixos.bootspec.v1\"' ${config.environment.systemDir}/boot.json"))
 
       assert 'initrd' in bootspec, "Bootspec should contain initrd field when initrd is enabled"
       assert 'initrdSecrets' not in bootspec, "Bootspec should not contain initrdSecrets when there's no initrdSecrets"
@@ -137,9 +137,9 @@ in
       machine.start()
       machine.wait_for_unit("multi-user.target")
 
-      machine.succeed("test -e /run/current-system/boot.json")
+      machine.succeed("test -e ${config.environment.systemDir}/boot.json")
 
-      bootspec = json.loads(machine.succeed("jq -r '.\"org.nixos.bootspec.v1\"' /run/current-system/boot.json"))
+      bootspec = json.loads(machine.succeed("jq -r '.\"org.nixos.bootspec.v1\"' ${config.environment.systemDir}/boot.json"))
 
       assert 'initrdSecrets' in bootspec, "Bootspec should contain an 'initrdSecrets' field given there's an initrd secret"
     '';
@@ -162,11 +162,11 @@ in
       machine.start()
       machine.wait_for_unit("multi-user.target")
 
-      machine.succeed("test -e /run/current-system/boot.json")
-      machine.succeed("test -e /run/current-system/specialisation/something/boot.json")
+      machine.succeed("test -e ${config.environment.systemDir}/boot.json")
+      machine.succeed("test -e ${config.environment.systemDir}/specialisation/something/boot.json")
 
-      sp_in_parent = json.loads(machine.succeed("jq -r '.\"org.nixos.specialisation.v1\".something' /run/current-system/boot.json"))
-      sp_in_fs = json.loads(machine.succeed("cat /run/current-system/specialisation/something/boot.json"))
+      sp_in_parent = json.loads(machine.succeed("jq -r '.\"org.nixos.specialisation.v1\".something' ${config.environment.systemDir}/boot.json"))
+      sp_in_fs = json.loads(machine.succeed("cat ${config.environment.systemDir}/specialisation/something/boot.json"))
 
       assert sp_in_parent['org.nixos.bootspec.v1'] == sp_in_fs['org.nixos.bootspec.v1'], "Bootspecs of the same specialisation are different!"
     '';
@@ -194,7 +194,7 @@ in
       machine.wait_for_unit("multi-user.target")
 
       current_os_release = machine.succeed("cat /etc/os-release")
-      bootspec_os_release = machine.succeed("cat $(jq -r '.\"org.nix-tests.product\".osRelease' /run/current-system/boot.json)")
+      bootspec_os_release = machine.succeed("cat $(jq -r '.\"org.nix-tests.product\".osRelease' ${config.environment.systemDir}/boot.json)")
 
       assert current_os_release == bootspec_os_release, "Filename referenced by extension has unexpected contents"
     '';

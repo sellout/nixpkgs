@@ -304,7 +304,7 @@ in
               xargs -0 -I '{}' sed -i 's/#### LoaderInfo: systemd-boot .* ####/#### LoaderInfo: systemd-boot 000.0-1-notnixos ####/' '{}'
               """
             )
-            return machine.succeed("/run/current-system/bin/switch-to-configuration boot 2>&1")
+            return machine.succeed("${config.environment.systemDir}/bin/switch-to-configuration boot 2>&1")
 
         output = switch()
         assert "updating systemd-boot from 000.0-1-notnixos to " in output, "Couldn't find systemd-boot update message"

@@ -58,7 +58,7 @@ in
                     /tmp            /tmp            none    rw,bind         0       0
                     /dev/shm        /dev/shm        none    rw,bind         0       0
                     /nix            /nix            none    ro,bind         0       0
-                    /run/current-system /run/current-system none rw,bind    0       0
+                    ${config.environment.systemDir} ${config.environment.systemDir} none rw,bind    0       0
                     /run/wrappers   /run/wrappers   none    rw,bind         0       0
                   '''
                 '';

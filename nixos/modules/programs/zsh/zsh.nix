@@ -313,10 +313,10 @@ in
 
     environment.pathsToLink = lib.optional cfg.enableCompletion "/share/zsh";
 
-    #users.defaultUserShell = lib.mkDefault "/run/current-system/sw/bin/zsh";
+    #users.defaultUserShell = lib.mkDefault "${config.environment.systemDir}/sw/bin/zsh";
 
     environment.shells = [
-      "/run/current-system/sw/bin/zsh"
+      "${config.environment.systemDir}/sw/bin/zsh"
       "${pkgs.zsh}/bin/zsh"
     ];
 

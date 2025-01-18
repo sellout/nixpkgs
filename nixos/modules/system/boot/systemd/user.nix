@@ -247,7 +247,7 @@ in
     # enable systemd user tmpfiles
     systemd.user.services.systemd-tmpfiles-setup.wantedBy = optional cfg.tmpfiles.enable "basic.target";
 
-    # /run/current-system/sw/etc/xdg is in systemd's $XDG_CONFIG_DIRS so we can
+    # ${config.environment.systemDir}/sw/etc/xdg is in systemd's $XDG_CONFIG_DIRS so we can
     # write the tmpfiles.d rules for everyone there
     environment.systemPackages = optional (cfg.tmpfiles.rules != [ ]) (writeTmpfiles {
       inherit (cfg.tmpfiles) rules;

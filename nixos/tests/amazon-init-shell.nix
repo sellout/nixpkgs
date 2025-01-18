@@ -31,7 +31,7 @@
 
         # Emulate running nixos-rebuild switch, just without any building.
         # https://github.com/nixos/nixpkgs/blob/4c62505847d88f16df11eff3c81bf9a453a4979e/nixos/modules/virtualisation/amazon-init.nix#L55
-        /run/current-system/bin/switch-to-configuration test
+        ${config.environment.systemDir}/bin/switch-to-configuration test
       '';
     };
   };

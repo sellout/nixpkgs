@@ -58,7 +58,7 @@ in
         ${pkgs.kexec-tools}/sbin/kexec -p /run/current-system/kernel \
         --initrd=/run/current-system/initrd \
         --reset-vga --console-vga \
-        --command-line="init=$(readlink -f /run/current-system/init) irqpoll maxcpus=1 reset_devices ${kernelParams}"
+        --command-line="init=$(readlink -f ${config.environment.systemDir}/init) irqpoll maxcpus=1 reset_devices ${kernelParams}"
       '';
       kernelParams = [
         "crashkernel=${crashdump.reservedMemory}"

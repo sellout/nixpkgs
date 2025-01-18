@@ -169,7 +169,7 @@ in
 
     environment.sessionVariables = {
       LANG = config.i18n.defaultLocale;
-      LOCALE_ARCHIVE = "/run/current-system/sw/lib/locale/locale-archive";
+      LOCALE_ARCHIVE = "${config.environment.systemDir}/sw/lib/locale/locale-archive";
     }
     // config.i18n.extraLocaleSettings;
 

@@ -58,7 +58,7 @@ in
       assert "${normaloHashedPassword}" in machine.succeed("getent shadow normalo"), "normalo user password is not correct"
 
 
-    machine.succeed("/run/current-system/specialisation/new-generation/bin/switch-to-configuration switch")
+    machine.succeed("${config.environment.systemDir}/specialisation/new-generation/bin/switch-to-configuration switch")
 
 
     with subtest("normalo user is disabled"):

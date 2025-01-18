@@ -37,7 +37,7 @@ in
 
     environment.systemPackages = pkgs.lumina.preRequisitePackages ++ pkgs.lumina.corePackages;
 
-    # Link some extra directories in /run/current-system/software/share
+    # Link some extra directories in ${config.environment.systemDir}/software/share
     environment.pathsToLink = [
       "/share/lumina"
       # FIXME: modules should link subdirs of `/share` rather than relying on this

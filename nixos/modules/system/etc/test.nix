@@ -28,7 +28,7 @@ let
     }
   );
   passwdText = ''
-    root:x:0:0:System administrator:/root:/run/current-system/sw/bin/bash
+    root:x:0:0:System administrator:/root:${config.environment.systemDir}/sw/bin/bash
   '';
   hostsText = ''
     127.0.0.1 localhost

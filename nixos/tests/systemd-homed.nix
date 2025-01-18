@@ -69,7 +69,7 @@ in
       machine.wait_until_succeeds("pgrep -u ${username} -t tty1 sh")
       machine.send_chars("whoami > /tmp/2\n")
       machine.wait_for_file("/tmp/2")
-      assert "${username}" in machine.succeed("cat /tmp/2")
+      assert "${username} " in machine.succeed("cat /tmp/2")
 
     # Smoke test to make sure the pam changes didn't break regular users.
     # Since homed is also enabled in the sshClient, it also tests the first

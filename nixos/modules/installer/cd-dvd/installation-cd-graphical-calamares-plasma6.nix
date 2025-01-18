@@ -38,7 +38,7 @@
     let
 
       # Comes from documentation.nix when xserver and nixos.enable are true.
-      manualDesktopFile = "/run/current-system/sw/share/applications/nixos-manual.desktop";
+      manualDesktopFile = "${config.environment.systemDir}/sw/share/applications/nixos-manual.desktop";
 
       homeDir = "/home/nixos/";
       desktopDir = homeDir + "Desktop/";

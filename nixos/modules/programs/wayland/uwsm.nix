@@ -82,7 +82,7 @@ in
                   instead of `lib.getExe pkgs.<compositor>` to avoid version mismatch
                   of the compositor used by UWSM and the one installed in the system.
                 '';
-                example = "/run/current-system/sw/bin/ExampleCompositor";
+                example = "${config.environment.systemDir}/sw/bin/ExampleCompositor";
               };
               extraArgs = lib.mkOption {
                 type = with lib.types; listOf str;

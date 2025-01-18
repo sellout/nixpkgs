@@ -97,7 +97,7 @@ let
         machine = create_machine("${startCommand}")
         machine.start()
         machine.wait_for_unit("multi-user.target")
-        machine.succeed("nix store verify --no-trust -r --option experimental-features nix-command /run/current-system")
+        machine.succeed("nix store verify --no-trust -r --option experimental-features nix-command ${config.environment.systemDir}")
 
         with subtest("Check whether the channel got installed correctly"):
             machine.succeed("nix-instantiate --dry-run '<nixpkgs>' -A hello")
@@ -213,7 +213,7 @@ in
         machine = create_machine("${startCommand}")
         machine.start()
         machine.wait_for_unit("multi-user.target")
-        machine.succeed("nix store verify -r --no-trust --option experimental-features nix-command /run/current-system")
+        machine.succeed("nix store verify -r --no-trust --option experimental-features nix-command ${config.environment.systemDir}")
         machine.shutdown()
       '';
 

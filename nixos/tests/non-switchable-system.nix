@@ -10,6 +10,6 @@
   };
 
   testScript = ''
-    machine.succeed("test ! -e /run/current-system/bin/switch-to-configuration")
+    machine.succeed("test ! -e ${config.environment.systemDir}/bin/switch-to-configuration")
   '';
 }

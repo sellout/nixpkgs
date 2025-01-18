@@ -982,7 +982,7 @@ in
           TimeoutSec = 60;
           ExecCondition = "/run/current-system/systemd/bin/systemctl -q is-active httpd.service";
           ExecStartPre = "${pkg}/bin/httpd -f /etc/httpd/httpd.conf -t";
-          ExecStart = "/run/current-system/systemd/bin/systemctl reload httpd.service";
+          ExecStart = "${config.environment.systemDir}/systemd/bin/systemctl reload httpd.service";
         };
       };
 

@@ -679,7 +679,7 @@ in
       };
 
       # We need to propagate /run for things like /run/booted-system
-      # and /run/current-system.
+      # and ${config.environment.systemDir}.
       mounts = [
         {
           where = "/sysroot/run";

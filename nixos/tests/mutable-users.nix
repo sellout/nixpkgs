@@ -35,11 +35,11 @@
         )
         assert "foobar" not in machine.succeed("cat /etc/passwd")
 
-    # In immutable mode passwd is not wrapped, while in mutable mode it is
-    # wrapped.
-    with subtest("Password is wrapped in mutable mode"):
-        assert "/run/current-system/" in machine.succeed("which passwd")
-        machine.succeed(
+      # In immutable mode passwd is not wrapped, while in mutable mode it is
+      # wrapped.
+      with subtest("Password is wrapped in mutable mode"):
+          assert "${config.environment.systemDir}/" in machine.succeed("which passwd")
+          machine.succeed(
             "/run/booted-system/specialisation/mutable/bin/switch-to-configuration test"
         )
         assert "/run/wrappers/" in machine.succeed("which passwd")

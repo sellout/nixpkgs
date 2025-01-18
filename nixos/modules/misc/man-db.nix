@@ -91,15 +91,15 @@ in
       in
       ''
         # Manual pages paths for NixOS
-        MANPATH_MAP /run/current-system/sw/bin /run/current-system/sw/share/man
-        MANPATH_MAP ${config.security.wrapperDir} /run/current-system/sw/share/man
+        MANPATH_MAP ${config.environment.systemDir}/sw/bin ${config.environment.systemDir}/sw/share/man
+        MANPATH_MAP ${config.security.wrapperDir} ${config.environment.systemDir}/sw/share/man
 
         ${lib.optionalString config.documentation.man.generateCaches ''
           # Generated manual pages cache for NixOS (immutable)
-          MANDB_MAP /run/current-system/sw/share/man ${manualCache}
+          MANDB_MAP ${config.environment.systemDir}/sw/share/man ${manualCache}
         ''}
         # Manual pages caches for NixOS
-        MANDB_MAP /run/current-system/sw/share/man /var/cache/man/nixos
+        MANDB_MAP ${config.environment.systemDir}/sw/share/man /var/cache/man/nixos
       '';
   };
 }

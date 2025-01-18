@@ -62,10 +62,10 @@
           prometheus.succeed("journalctl -n1 -o json --output-fields=__CURSOR")
       )["__CURSOR"]
 
-      # Now we switch:
-      prometheus_config_change = prometheus.succeed(
-          "readlink /run/current-system/specialisation/prometheus-config-change"
-      ).strip()
+        # Now we switch:
+        prometheus_config_change = prometheus.succeed(
+            "readlink ${config.environment.systemDir}/specialisation/prometheus-config-change"
+        ).strip()
       prometheus.succeed(prometheus_config_change + "/bin/switch-to-configuration test")
 
       # Next we retrieve all logs since the start of switching:

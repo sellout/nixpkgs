@@ -1320,6 +1320,8 @@ in
   ];
 
   config = mkIf cfg.enable {
+    
+
     assertions =
       let
         hostOrAliasIsNull = l: l.root == null || l.alias == null;
@@ -1455,7 +1457,9 @@ in
     };
 
     systemd.services = {
-      nginx = {
+      
+
+    nginx = {
         description = "Nginx Web Server";
         wantedBy = [ "multi-user.target" ];
         wants = lib.optionals (!cfg.enableReload) (
@@ -1592,8 +1596,8 @@ in
           serviceConfig = {
             Type = "oneshot";
             TimeoutSec = 60;
-            ExecCondition = "/run/current-system/systemd/bin/systemctl -q is-active nginx.service";
-            ExecStart = "/run/current-system/systemd/bin/systemctl reload nginx.service";
+            ExecCondition = "${config.environment.systemDir}/systemd/bin/systemctl -q is-active nginx.service";
+            ExecStart = "${config.environment.systemDir}/systemd/bin/systemctl reload nginx.service";
           };
         };
     }

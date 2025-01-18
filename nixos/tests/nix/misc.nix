@@ -60,7 +60,7 @@ let
                   raise Exception("narSize not set")
 
           with subtest("nix-db"):
-              machine.succeed("nix-store -qR /run/current-system | grep nixos-")
+              machine.succeed("nix-store -qR ${config.environment.systemDir} | grep nixos-")
         '';
       }
     );

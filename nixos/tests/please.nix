@@ -1,4 +1,5 @@
-{ lib, ... }:
+
+  { lib, ... }:
 {
   name = "please";
   meta.maintainers = [ ];
@@ -22,7 +23,7 @@
           user2_run_true_as_root = {
             name = "user2";
             target = "root";
-            rule = "/run/current-system/sw/bin/true";
+            rule = "${config.environment.systemDir}/sw/bin/true";
             require_pass = false;
           };
           user4_edit_etc_hosts_as_root = {

@@ -151,7 +151,7 @@ in
     machine.succeed('systemd-run --pty --wait -M ${containerName} /run/current-system/sw/bin/nix-store --option substitute false --realize /tmp/drv')
 
     # Test nss_mymachines without nscd
-    machine.succeed('LD_LIBRARY_PATH="/run/current-system/sw/lib" getent -s hosts:mymachines hosts ${containerName}');
+    machine.succeed('LD_LIBRARY_PATH="${config.environment.systemDir}/sw/lib" getent -s hosts:mymachines hosts ${containerName}');
 
     # Test nss_mymachines via nscd
     machine.succeed("getent hosts ${containerName}");
@@ -160,7 +160,7 @@ in
     machine.succeed("networkctl --json=short status ve-${containerName} | ${pkgs.jq}/bin/jq -e '.OperationalState == \"routable\"'");
 
     # Test systemd-nspawn network configuration to host
-    machine.succeed("machinectl shell ${containerName} /run/current-system/sw/bin/networkctl --json=short status host0 | ${pkgs.jq}/bin/jq -r '.OperationalState == \"routable\"'");
+    machine.succeed("machinectl shell ${containerName} ${config.environment.systemDir}/sw/bin/networkctl --json=short status host0 | ${pkgs.jq}/bin/jq -r '.OperationalState == \"routable\"'");
 
     # Test systemd-nspawn network configuration
     machine.succeed("ping -n -c 1 ${containerName}");

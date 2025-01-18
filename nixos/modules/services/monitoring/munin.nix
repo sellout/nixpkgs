@@ -106,7 +106,7 @@ let
       ${lib.concatStringsSep "\n" (map intern-fn paths)}
       chmod -R u+w .
       ${pkgs.findutils}/bin/find . -type f -exec ${pkgs.gnused}/bin/sed -E -i "
-        \%''${NIX_STORE}/%! s,(/usr)?/s?bin/,/run/current-system/sw/bin/,g
+        \%''${NIX_STORE}/%! s,(/usr)?/s?bin/,${config.environment.systemDir}/sw/bin/,g
       " '{}' '+'
     '';
 
@@ -348,7 +348,7 @@ in
         path = with pkgs; [
           munin
           smartmontools
-          "/run/current-system/sw"
+          "${config.environment.systemDir}/sw"
           "/run/wrappers"
         ];
         environment.MUNIN_LIBDIR = "${pkgs.munin}/lib";

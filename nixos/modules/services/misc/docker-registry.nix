@@ -164,7 +164,7 @@ in
 
       script = ''
         ${cfg.package}/bin/registry garbage-collect ${configFile}
-        /run/current-system/systemd/bin/systemctl restart docker-registry.service
+        ${config.environment.systemDir}/systemd/bin/systemctl restart docker-registry.service
       '';
 
       startAt = lib.optional cfg.enableGarbageCollect cfg.garbageCollectDates;

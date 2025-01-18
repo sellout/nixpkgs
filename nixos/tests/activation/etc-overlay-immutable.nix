@@ -48,7 +48,7 @@
 
   testScript = # python
     ''
-      newergen = machine.succeed("realpath /run/current-system/specialisation/newer-generation/bin/switch-to-configuration").rstrip()
+      newergen = machine.succeed("realpath ${config.environment.systemDir}/specialisation/newer-generation/bin/switch-to-configuration").rstrip()
 
       with subtest("/run/nixos-etc-metadata/ is mounted"):
         print(machine.succeed("mountpoint /run/nixos-etc-metadata"))
@@ -83,10 +83,10 @@
         assert machine.succeed("readlink -f /etc/gshadow") == "/var/lib/nixos/etc/gshadow\n"
 
       with subtest("switching to the same generation"):
-        machine.succeed("/run/current-system/bin/switch-to-configuration test")
+        machine.succeed("${config.environment.systemDir}/bin/switch-to-configuration test")
 
       with subtest("the initrd didn't get rebuilt"):
-        machine.succeed("test /run/current-system/initrd -ef /run/current-system/specialisation/new-generation/initrd")
+        machine.succeed("test ${config.environment.systemDir}/initrd -ef ${config.environment.systemDir}/specialisation/new-generation/initrd")
 
       with subtest("switching to a new generation"):
         machine.fail("stat /etc/newgen")
@@ -95,7 +95,7 @@
         machine.succeed("touch /etc/mountpoint/extra-file")
         machine.succeed("mount --bind /dev/null /etc/filemount")
 
-        machine.succeed("/run/current-system/specialisation/new-generation/bin/switch-to-configuration switch")
+        machine.succeed("${config.environment.systemDir}/specialisation/new-generation/bin/switch-to-configuration switch")
 
         assert machine.succeed("cat /etc/newgen") == "newgen"
 

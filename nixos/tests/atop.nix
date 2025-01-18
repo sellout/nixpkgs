@@ -49,7 +49,7 @@ let
               assert stat == "4511 0", f"Wrapper stat is {stat}, expected '4511 0'"
         ''
       else
-        path "atop" "/run/current-system/sw/bin/atop";
+        path "atop" "${config.environment.systemDir}/sw/bin/atop";
     atopService =
       present:
       if present then
@@ -113,7 +113,7 @@ let
     atopgpu =
       present:
       if present then
-        (unit "atopgpu.service" "active") + (path "atopgpud" "/run/current-system/sw/bin/atopgpud")
+        (unit "atopgpu.service" "active") + (path "atopgpud" "${config.environment.systemDir}/sw/bin/atopgpud")
       else
         (unit "atopgpu.service" "inactive")
         + ''

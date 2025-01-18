@@ -34,10 +34,10 @@ let
   '';
 
   defaultConfig = {
-    shutdown_cmd = "/run/current-system/systemd/bin/systemctl poweroff";
-    restart_cmd = "/run/current-system/systemd/bin/systemctl reboot";
+    shutdown_cmd = "${config.environment.systemDir}/systemd/bin/systemctl poweroff";
+    restart_cmd = "${config.environment.systemDir}/systemd/bin/systemctl reboot";
     service_name = "ly";
-    path = "/run/current-system/sw/bin";
+    path = "${config.environment.systemDir}/sw/bin";
     term_reset_cmd = "${pkgs.ncurses}/bin/tput reset";
     term_restore_cursor_cmd = "${pkgs.ncurses}/bin/tput cnorm";
     waylandsessions = "${dmcfg.sessionData.desktops}/share/wayland-sessions";
@@ -107,7 +107,7 @@ in
 
       displayManager = {
         enable = true;
-        execCmd = "exec /run/current-system/sw/bin/ly";
+        execCmd = "exec ${config.environment.systemDir}/sw/bin/ly";
 
         # Set this here instead of 'defaultConfig' so users get eval
         # errors when they change it.

@@ -150,7 +150,7 @@ in
 
         sessionVariables = {
           NIXOS_XDG_OPEN_USE_PORTAL = mkIf cfg.xdgOpenUsePortal "1";
-          NIX_XDG_DESKTOP_PORTAL_DIR = "/run/current-system/sw/share/xdg-desktop-portal/portals";
+          NIX_XDG_DESKTOP_PORTAL_DIR = "${config.environment.systemDir}/sw/share/xdg-desktop-portal/portals";
         };
 
         etc = lib.concatMapAttrs (

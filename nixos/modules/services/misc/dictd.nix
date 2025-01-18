@@ -72,7 +72,7 @@ in
         description = "DICT.org Dictionary Server";
         wantedBy = [ "multi-user.target" ];
         environment = {
-          LOCALE_ARCHIVE = "/run/current-system/sw/lib/locale/locale-archive";
+          LOCALE_ARCHIVE = "${config.environment.systemDir}/sw/lib/locale/locale-archive";
         };
         # Work around the fact that dictd doesn't handle SIGTERM; it terminates
         # with code 143 instead of exiting with code 0.

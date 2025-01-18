@@ -88,7 +88,7 @@ in
 
     systemd.tmpfiles.rules = [
       "d '${dataDir}' 0700 ${cfg.user} - - -"
-      "d '${systemDir}' 0700 ${cfg.user} - - -"
+      "d '${systemDir}/sw' 0700 ${cfg.user} - - -"
     ];
 
     systemd.services.firebird = {
@@ -99,19 +99,19 @@ in
       # TODO: moving security2.fdb into the data directory works, maybe there
       # is a better way
       preStart = ''
-        if ! test -e "${systemDir}/security2.fdb"; then
-            cp ${firebird}/security2.fdb "${systemDir}"
+        if ! test -e "${systemDir}/sw/security2.fdb"; then
+            cp ${firebird}/security2.fdb "${systemDir}/sw"
         fi
 
-        if ! test -e "${systemDir}/security3.fdb"; then
-            cp ${firebird}/security3.fdb "${systemDir}"
+        if ! test -e "${systemDir}/sw/security3.fdb"; then
+            cp ${firebird}/security3.fdb "${systemDir}/sw"
         fi
 
-        if ! test -e "${systemDir}/security4.fdb"; then
-            cp ${firebird}/security4.fdb "${systemDir}"
+        if ! test -e "${systemDir}/sw/security4.fdb"; then
+            cp ${firebird}/security4.fdb "${systemDir}/sw"
         fi
 
-        chmod -R 700         "${dataDir}" "${systemDir}" /var/log/firebird
+        chmod -R 700         "${dataDir}" "${systemDir}/sw" /var/log/firebird
       '';
 
       serviceConfig.User = cfg.user;

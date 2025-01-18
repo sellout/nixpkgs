@@ -21,7 +21,7 @@ in
       description = "InputPlumber Service";
       wantedBy = [ "multi-user.target" ];
       environment = {
-        XDG_DATA_DIRS = "/run/current-system/sw/share";
+        XDG_DATA_DIRS = "${config.environment.systemDir}/sw/share";
       };
       restartIfChanged = true;
 

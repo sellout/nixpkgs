@@ -24,6 +24,8 @@ in
 
 {
 
+  
+
   options = {
 
     programs.bash = {
@@ -229,8 +231,8 @@ in
     ];
 
     environment.shells = [
-      "/run/current-system/sw/bin/bash"
-      "/run/current-system/sw/bin/sh"
+      "${config.environment.systemDir}/sw/bin/bash"
+      "${config.environment.systemDir}/sw/bin/sh"
       "${pkgs.bashInteractive}/bin/bash"
       "${pkgs.bashInteractive}/bin/sh"
     ];

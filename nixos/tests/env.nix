@@ -15,7 +15,7 @@
         '';
 
         environment.sessionVariables = {
-          TERMINFO_DIRS = "/run/current-system/sw/share/terminfo";
+          TERMINFO_DIRS = "${config.environment.systemDir}/sw/share/terminfo";
           NIXCON = "awesome";
           SHOULD_NOT_BE_SET = "oops";
         };
@@ -35,7 +35,7 @@
     machine.succeed('[ -L "/etc/folder/with/file" ]')
     assert "Hello World" in machine.succeed('cat "/etc/plainFile"')
 
-    assert "/run/current-system/sw/share/terminfo" in machine.succeed(
+    assert "${config.environment.systemDir}/sw/share/terminfo" in machine.succeed(
         "echo ''${TERMINFO_DIRS}"
     )
     assert "awesome" in machine.succeed("echo ''${NIXCON}")

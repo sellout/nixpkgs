@@ -24,7 +24,7 @@ let
   + lib.optionalString config.services.nscd.enable ''
     # Invalidate the nscd cache whenever resolv.conf is
     # regenerated.
-    libc_restart='/run/current-system/systemd/bin/systemctl try-restart --no-block nscd.service 2> /dev/null'
+    libc_restart='${config.environment.systemDir}/systemd/bin/systemctl try-restart --no-block nscd.service 2> /dev/null'
   ''
   + lib.optionalString (lib.length resolvconfOptions > 0) ''
     # Options as described in resolv.conf(5)

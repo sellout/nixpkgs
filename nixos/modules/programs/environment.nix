@@ -27,7 +27,7 @@ in
 
     environment.profiles = lib.mkAfter [
       "/nix/var/nix/profiles/default"
-      "/run/current-system/sw"
+      "${config.environment.systemDir}/sw"
     ];
 
     environment.sessionVariables = {

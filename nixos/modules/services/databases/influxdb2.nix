@@ -134,7 +134,7 @@ let
     set -euo pipefail
     if test -e "$STATE_DIRECTORY/.needs_restart"; then
       rm -f "$STATE_DIRECTORY/.needs_restart"
-      /run/current-system/systemd/bin/systemctl restart influxdb2
+      ${config.environment.systemDir}/systemd/bin/systemctl restart influxdb2
     fi
   '';
 

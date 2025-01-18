@@ -234,7 +234,7 @@ in
             before = [ "lomiri-url-dispatcher.service" ];
             serviceConfig = {
               Type = "oneshot";
-              ExecStart = "${pkgs.lomiri.lomiri-url-dispatcher}/libexec/lomiri-url-dispatcher/lomiri-update-directory /run/current-system/sw/share/lomiri-url-dispatcher/urls/";
+              ExecStart = "${pkgs.lomiri.lomiri-url-dispatcher}/libexec/lomiri-url-dispatcher/lomiri-update-directory ${config.environment.systemDir}/sw/share/lomiri-url-dispatcher/urls/";
             };
           };
 

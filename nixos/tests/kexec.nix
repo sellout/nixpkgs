@@ -30,7 +30,7 @@
     ''
       # Test whether reboot via kexec works.
       node1.wait_for_unit("multi-user.target")
-      node1.succeed('kexec --load /run/current-system/kernel --initrd /run/current-system/initrd --command-line "$(</proc/cmdline)"')
+      node1.succeed('kexec --load ${config.environment.systemDir}/kernel --initrd ${config.environment.systemDir}/initrd --command-line "$(</proc/cmdline)"')
       node1.execute("systemctl kexec >&2 &", check_return=False)
       node1.connected = False
       node1.connect()

@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+  { pkgs, lib, ... }:
 {
   name = "budgie";
 
@@ -61,7 +61,7 @@
           machine.wait_for_window("budgie-panel")
 
       with subtest("Check if various environment variables are set"):
-          cmd = "xargs --null --max-args=1 echo < /proc/$(pgrep -xf /run/current-system/sw/bin/budgie-wm)/environ"
+          cmd = "xargs --null --max-args=1 echo < /proc/$(pgrep -xf ${config.environment.systemDir}/sw/bin/budgie-wm)/environ"
           machine.succeed(f"{cmd} | grep 'XDG_CURRENT_DESKTOP' | grep 'Budgie'")
           machine.succeed(f"{cmd} | grep 'BUDGIE_PLUGIN_DATADIR' | grep '${pkgs.budgie-desktop-with-plugins.pname}'")
           # From the nixos/budgie module

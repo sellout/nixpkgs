@@ -306,7 +306,7 @@ in
 
       serviceConfig = {
         ExecStart = "${cfg.package}/bin/unbound -p -d -c /etc/unbound/unbound.conf";
-        ExecReload = "+/run/current-system/sw/bin/kill -HUP $MAINPID";
+        ExecReload = "+${config.environment.systemDir}/sw/bin/kill -HUP $MAINPID";
 
         NotifyAccess = "main";
         Type = "notify";

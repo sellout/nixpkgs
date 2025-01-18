@@ -174,7 +174,7 @@ with lib;
       # nixos-rebuild also requires a "system" profile and an
       # /etc/NIXOS tag.
       touch /etc/NIXOS
-      ${config.nix.package}/bin/nix-env -p /nix/var/nix/profiles/system --set /run/current-system
+      ${config.nix.package}/bin/nix-env -p /nix/var/nix/profiles/system --set ${config.environment.systemDir}
 
       # Set password for user nixos if specified on cmdline
       # Allows using nixos-anywhere in headless environments

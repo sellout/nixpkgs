@@ -682,7 +682,7 @@ in
         # systemd-ssh-generator needs sshd in PATH
         ++ lib.optional config.services.openssh.enable config.services.openssh.package
       );
-      LOCALE_ARCHIVE = "/run/current-system/sw/lib/locale/locale-archive";
+      LOCALE_ARCHIVE = "${config.environment.systemDir}/sw/lib/locale/locale-archive";
       TZDIR = "/etc/zoneinfo";
       # If SYSTEMD_UNIT_PATH ends with an empty component (":"), the usual unit load path will be appended to the contents of the variable
       SYSTEMD_UNIT_PATH = lib.mkIf (

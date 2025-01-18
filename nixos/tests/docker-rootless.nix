@@ -40,7 +40,7 @@
 
       machine.succeed("tar cv --files-from /dev/null | ${sudo} docker import - scratchimg")
       machine.succeed(
-          "${sudo} docker run -d --name=sleeping -v /nix/store:/nix/store -v /run/current-system/sw/bin:/bin scratchimg /bin/sleep 10"
+          "${sudo} docker run -d --name=sleeping -v /nix/store:/nix/store -v ${config.environment.systemDir}/sw/bin:/bin scratchimg /bin/sleep 10"
       )
       machine.succeed("${sudo} docker ps | grep sleeping")
       machine.succeed("${sudo} docker stop sleeping")

@@ -975,9 +975,9 @@ in
           assert_lacks(out, "\nrestarting the following units:")
           assert_lacks(out, "\nstarting the following units:")
           assert_contains(out, "the following new units were started: test.service\n")
-          machine.succeed("! test -e /run/current-system/activate")
-          machine.succeed("! test -e /run/current-system/dry-activate")
-          machine.succeed("! test -e /run/current-system/bin/switch-to-configuration")
+          machine.succeed("! test -e ${config.environment.systemDir}/activate")
+          machine.succeed("! test -e ${config.environment.systemDir}/dry-activate")
+          machine.succeed("! test -e ${config.environment.systemDir}/bin/switch-to-configuration")
 
           # Ensure units with multiline values work
           out = switch_to_specialisation("${machine}", "unitWithMultilineValue")

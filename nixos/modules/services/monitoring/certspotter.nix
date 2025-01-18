@@ -135,7 +135,7 @@ in
       wantedBy = [ "multi-user.target" ];
       environment.CERTSPOTTER_CONFIG_DIR = configDir;
       environment.SENDMAIL_PATH =
-        if cfg.sendmailPath != null then cfg.sendmailPath else "/run/current-system/sw/bin/false";
+        if cfg.sendmailPath != null then cfg.sendmailPath else "${config.environment.systemDir}/sw/bin/false";
       script = ''
         export CERTSPOTTER_STATE_DIR="$STATE_DIRECTORY"
         cd "$CERTSPOTTER_STATE_DIR"

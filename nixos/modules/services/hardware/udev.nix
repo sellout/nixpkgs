@@ -91,7 +91,7 @@ let
             --replace-quiet /usr/bin/cat ${pkgs.coreutils}/bin/cat \
             --replace-quiet /usr/bin/basename ${pkgs.coreutils}/bin/basename 2>/dev/null
         ${lib.optionalString (initrdBin != null) ''
-          substituteInPlace $i --replace-quiet '/run/current-system/systemd' "${lib.removeSuffix "/bin" initrdBin}"
+          substituteInPlace $i --replace-quiet '${config.environment.systemDir}/systemd' "${lib.removeSuffix "/bin" initrdBin}"
         ''}
         done
 
@@ -116,8 +116,8 @@ let
           sed -e 's/.*RUN+="\([^ "]*\)[ "].*/\1/' | uniq)
         for i in $import_progs $run_progs; do
           # if the path refers to /run/current-system/systemd, replace with config.systemd.package
-          if [[ $i == /run/current-system/systemd* ]]; then
-            i="${systemd}/''${i#/run/current-system/systemd/}"
+          if [[ $i == ${config.environment.systemDir}/systemd* ]]; then
+            i="${systemd}/''${i#${config.environment.systemDir}/systemd/}"
           fi
 
           if [[ ! -x $i ]]; then

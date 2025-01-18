@@ -91,7 +91,7 @@ in
           config.nix.package
           cfg.package
           config.services.dysnomia.package
-          "/run/current-system/sw"
+          "${config.environment.systemDir}/sw"
         ];
 
         environment = {

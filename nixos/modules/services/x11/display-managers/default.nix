@@ -56,7 +56,7 @@ let
     )
 
     if [ -z "$session_is_systemd_aware" ]; then
-      /run/current-system/systemd/bin/systemctl --user ${action} nixos-fake-graphical-session.target
+        ${config.environment.systemDir}/systemd/bin/systemctl --user ${action} nixos-fake-graphical-session.target
     fi
   '';
 
@@ -99,7 +99,7 @@ let
 
     # Import environment variables into the systemd user environment.
     ${optionalString (cfg.displayManager.importedVariables != [ ]) (
-      "/run/current-system/systemd/bin/systemctl --user import-environment "
+      "${config.environment.systemDir}/systemd/bin/systemctl --user import-environment "
       + toString (lib.unique cfg.displayManager.importedVariables)
     )}
 

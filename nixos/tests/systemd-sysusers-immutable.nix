@@ -52,7 +52,7 @@ in
       machine.fail("useradd manual-sysuser")
 
 
-    machine.succeed("/run/current-system/specialisation/new-generation/bin/switch-to-configuration switch")
+    machine.succeed("${config.environment.systemDir}/specialisation/new-generation/bin/switch-to-configuration switch")
 
 
     with subtest("new-sysuser user is created after switching to new generation"):

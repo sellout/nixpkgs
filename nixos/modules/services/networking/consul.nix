@@ -173,7 +173,7 @@ in
           isSystemUser = true;
           group = "consul";
           # The shell is needed for health checks
-          shell = "/run/current-system/sw/bin/bash";
+          shell = "${config.environment.systemDir}/sw/bin/bash";
         };
         users.groups.consul = { };
 

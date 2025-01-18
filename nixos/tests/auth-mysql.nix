@@ -1,4 +1,5 @@
-{ pkgs, lib, ... }:
+
+  { pkgs, lib, ... }:
 
 let
   dbUser = "nixos_auth";
@@ -76,13 +77,13 @@ in
         };
         nss = {
           getpwnam = ''
-            SELECT name, 'x', uid, gid, name, CONCAT('/home/', name), "/run/current-system/sw/bin/bash" \
+            SELECT name, 'x', uid, gid, name, CONCAT('/home/', name), "${config.environment.systemDir}/sw/bin/bash" \
             FROM users \
             WHERE name='%1$s' \
             LIMIT 1
           '';
           getpwuid = ''
-            SELECT name, 'x', uid, gid, name, CONCAT('/home/', name), "/run/current-system/sw/bin/bash" \
+            SELECT name, 'x', uid, gid, name, CONCAT('/home/', name), "${config.environment.systemDir}/sw/bin/bash" \
             FROM users \
             WHERE uid=%1$u \
             LIMIT 1
@@ -94,7 +95,7 @@ in
             LIMIT 1
           '';
           getpwent = ''
-            SELECT name, 'x', uid, gid, name, CONCAT('/home/', name), "/run/current-system/sw/bin/bash" \
+            SELECT name, 'x', uid, gid, name, CONCAT('/home/', name), "${config.environment.systemDir}/sw/bin/bash" \
             FROM users
           '';
           getspent = ''

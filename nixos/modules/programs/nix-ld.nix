@@ -40,8 +40,8 @@ in
     environment.pathsToLink = [ "/share/nix-ld" ];
 
     environment.sessionVariables = {
-      NIX_LD = "/run/current-system/sw/share/nix-ld/lib/ld.so";
-      NIX_LD_LIBRARY_PATH = "/run/current-system/sw/share/nix-ld/lib";
+      NIX_LD = "${config.environment.systemDir}/sw/share/nix-ld/lib/ld.so";
+      NIX_LD_LIBRARY_PATH = "${config.environment.systemDir}/sw/share/nix-ld/lib";
     };
 
     # We currently take all libraries from systemd and nix as the default.

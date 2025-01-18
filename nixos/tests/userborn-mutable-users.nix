@@ -62,7 +62,7 @@ in
       machine.succeed("userdel manual-normalo")
 
 
-    machine.succeed("/run/current-system/specialisation/new-generation/bin/switch-to-configuration switch")
+    machine.succeed("${config.environment.systemDir}/specialisation/new-generation/bin/switch-to-configuration switch")
 
 
     with subtest("normalo user is disabled"):

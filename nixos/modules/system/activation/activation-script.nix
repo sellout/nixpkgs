@@ -76,9 +76,9 @@ let
     + optionalString (!onlyDry) ''
       # Make this configuration the current configuration.
       # The readlink is there to ensure that when $systemConfig = /system
-      # (which is a symlink to the store), /run/current-system is still
+      # (which is a symlink to the store), ${config.environment.systemDir} is still
       # used as a garbage collection root.
-      ln -sfn "$(readlink -f "$systemConfig")" /run/current-system
+      ln -sfn "$(readlink -f "$systemConfig")" ${config.environment.systemDir}
 
       exit $_status
     '';
@@ -283,7 +283,7 @@ in
     ++ lib.optionals config.nix.enable [
       # Prevent the current configuration from being garbage-collected.
       "d /nix/var/nix/gcroots -"
-      "L+ /nix/var/nix/gcroots/current-system - - - - /run/current-system"
+      "L+ /nix/var/nix/gcroots/current-system - - - - ${config.environment.systemDir}"
     ];
 
     system.activationScripts.usrbinenv =

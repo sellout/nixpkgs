@@ -237,7 +237,7 @@ let
       enableStrictShellChecks = true;
     };
 
-  systemctl = "/run/current-system/systemd/bin/systemctl";
+  systemctl = "${config.environment.systemDir}/systemd/bin/systemctl";
 
 in
 {
@@ -428,7 +428,7 @@ in
                   #   /^# key_mgmt: /{ run=1 }
                   #   /^#$/{ run=0 }
                   #   /^# [A-Z0-9-]{2,}/{ if(run){printf("\"%s\"\n", $2)} }
-                  # ' /run/current-system/sw/share/doc/wpa_supplicant/wpa_supplicant.conf.example
+                  # ' ${config.environment.systemDir}/sw/share/doc/wpa_supplicant/wpa_supplicant.conf.example
                   type = types.listOf (
                     types.enum [
                       "WPA-PSK"

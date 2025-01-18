@@ -34,10 +34,10 @@ in
     # This one is included by <tunables/global>
     # which is usually included before any profile.
     "abstractions/tunables/alias" = ''
-      alias /bin -> /run/current-system/sw/bin,
-      alias /lib/modules -> /run/current-system/kernel/lib/modules,
-      alias /sbin -> /run/current-system/sw/sbin,
-      alias /usr -> /run/current-system/sw,
+      alias /bin -> ${config.environment.systemDir}/sw/bin,
+      alias /lib/modules -> ${config.environment.systemDir}/kernel/lib/modules,
+      alias /sbin -> ${config.environment.systemDir}/sw/sbin,
+      alias /usr -> ${config.environment.systemDir}/sw,
     '';
     "abstractions/audio" = ''
       include "${pkgs.apparmor-profiles}/etc/apparmor.d/abstractions/audio"

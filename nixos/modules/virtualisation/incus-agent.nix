@@ -30,7 +30,7 @@ in
         pkgs.util-linux
 
         # allow `incus exec` to find system binaries
-        "/run/current-system/sw"
+        "${config.environment.systemDir}/sw"
       ];
 
       # avoid killing nixos-rebuild switch when executed through incus exec

@@ -231,7 +231,7 @@ in
 
     with subtest("start the homeserver"):
         homeserver.succeed(
-            "/run/current-system/specialisation/running/bin/switch-to-configuration test >&2"
+            "${config.environment.systemDir}/specialisation/running/bin/switch-to-configuration test >&2"
         )
 
         homeserver.wait_for_unit("matrix-synapse.service")

@@ -75,7 +75,7 @@ in
       wantedBy = [ "multi-user.target" ];
       restartTriggers = [ configDirectory ];
       serviceConfig = {
-        ExecStart = "/run/current-system/systemd/bin/systemctl try-reload-or-restart freeswitch.service";
+        ExecStart = "${config.environment.systemDir}/systemd/bin/systemctl try-reload-or-restart freeswitch.service";
         RemainAfterExit = true;
         Type = "oneshot";
       };
