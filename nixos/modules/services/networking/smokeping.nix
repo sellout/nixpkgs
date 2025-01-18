@@ -257,7 +257,7 @@ in
       sendmail = mkOption {
         type = types.nullOr types.path;
         default = null;
-        example = "/run/wrappers/bin/sendmail";
+        example = "${config.security.wrapperDir}/sendmail";
         description = "Use this sendmail compatible script to deliver alerts";
       };
       smokeMailTemplate = mkOption {

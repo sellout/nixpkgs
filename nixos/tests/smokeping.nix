@@ -1,4 +1,5 @@
-{ pkgs, ... }:
+
+  { pkgs, ... }:
 {
   name = "smokeping";
   meta = with pkgs.lib.maintainers; {
@@ -15,7 +16,7 @@
           mailHost = "127.0.0.2";
           probeConfig = ''
             + FPing
-            binary = /run/wrappers/bin/fping
+            binary = ${config.security.wrapperDir}/fping
             offset = 0%
           '';
         };

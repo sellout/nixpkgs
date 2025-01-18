@@ -12,7 +12,7 @@ let
     export HOME="/var/lib/libretranslate"
     sudo=exec
     if [[ "$USER" != ${cfg.user} ]]; then
-      sudo='exec /run/wrappers/bin/sudo -u ${cfg.user} --preserve-env'
+      sudo='exec ${config.security.wrapperDir}/sudo -u ${cfg.user} --preserve-env'
     fi
     $sudo ${cfg.package}/bin/ltmanage keys --api-keys-db-path ${cfg.dataDir}/db/api_keys.db "$@"
   '';

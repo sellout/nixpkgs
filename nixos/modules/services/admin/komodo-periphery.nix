@@ -318,7 +318,7 @@ in
         Environment = lib.mapAttrsToList (name: value: "${name}=${value}") (
           cfg.environment
           // lib.optionalAttrs (!cfg.disableTerminals) {
-            PATH = "/run/current-system/sw/bin:/run/wrappers/bin";
+            PATH = "/run/current-system/sw/bin:${config.security.wrapperDir}";
           }
         );
         EnvironmentFile = lib.mkIf (cfg.environmentFile != null) cfg.environmentFile;

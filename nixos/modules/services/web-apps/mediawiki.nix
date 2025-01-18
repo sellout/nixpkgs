@@ -94,8 +94,8 @@ let
         cat <<'EOF' >"$script"
         #!${pkgs.runtimeShell}
         become=(exec)
-        if [[ "$(id -u)" != ${user} ]]; then
-          become=(exec /run/wrappers/bin/sudo -u ${user} --)
+        if [[ "$(id -u)" != ${user}]]; then
+      become=(exec ${config.security.wrapperDir}/sudo -u ${user} --)
         fi
         "${"$"}{become[@]}" ${placeholder "out"}/bin/mediawiki-maintenance \
         EOF

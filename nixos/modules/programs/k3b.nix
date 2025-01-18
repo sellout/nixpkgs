@@ -14,11 +14,12 @@
         Whether to enable k3b, the KDE disk burning application.
 
         Additionally to installing `k3b` enabling this will
-        add `setuid` wrappers in `/run/wrappers/bin`
+        add `setuid` wrappers in `config.security.wrapperDir`
         for both `cdrdao` and `cdrecord`. On first
         run you must manually configure the path of `cdrdae` and
         `cdrecord` to correspond to the appropriate paths under
-        `/run/wrappers/bin` in the "Setup External Programs" menu.
+        `${config.security.wrapperDir}` in the "Setup External
+        Programs" menu.
       '';
     };
   };

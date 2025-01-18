@@ -510,7 +510,7 @@ in
             Rails.application.config.action_mailer.delivery_method = :sendmail
             ActionMailer::Base.delivery_method = :sendmail
             ActionMailer::Base.sendmail_settings = {
-              location: "/run/wrappers/bin/sendmail",
+              location: "${config.security.wrapperDir}/sendmail",
               arguments: "-i -t"
             }
           end

@@ -170,7 +170,7 @@ in
             };
             global."passwd program" = lib.mkOption {
               type = lib.types.str;
-              default = "/run/wrappers/bin/passwd %u";
+              default = "${config.security.wrapperDir}/passwd %u";
               description = "Path to a program that can be used to set UNIX user passwords.";
             };
           };
@@ -178,14 +178,14 @@ in
         default = {
           "global" = {
             "security" = "user";
-            "passwd program" = "/run/wrappers/bin/passwd %u";
+            "passwd program" = "${config.security.wrapperDir}/passwd %u";
             "invalid users" = [ "root" ];
           };
         };
         example = {
           "global" = {
             "security" = "user";
-            "passwd program" = "/run/wrappers/bin/passwd %u";
+            "passwd program" = "${config.security.wrapperDir}/passwd %u";
             "invalid users" = [ "root" ];
           };
           "public" = {

@@ -61,7 +61,8 @@ in
 
         This option is deprecated and has no effect.
         `--fakeroot` support is enabled automatically,
-        as `systemBinPaths = [ "/run/wrappers/bin" ]` is always specified.
+        as `systemBinPaths = [ config.security.wrapperDir ]`
+        is always specified.
       '';
     };
     enableSuid = lib.mkOption {
@@ -84,7 +85,7 @@ in
         (Extra) system-wide /**/bin paths
         for Apptainer/Singularity to find command-line utilities in.
 
-        `"/run/wrappers/bin"` is included by default to make
+        `config.security.wrapperDir` is included by default to make
         utilities with SUID bit set available to Apptainer/Singularity.
         Use `lib.mkForce` to shadow the default values.
       '';
@@ -100,11 +101,11 @@ in
         // lib.optionalAttrs cfg.enableExternalLocalStateDir { externalLocalStateDir = "/var/lib"; }
         // lib.optionalAttrs cfg.enableSuid {
           enableSuid = true;
-          starterSuidPath = "/run/wrappers/bin/${cfg.package.projectName}-suid";
+          starterSuidPath = "${config.security.wrapperDir}/${cfg.package.projectName}-suid";
         }
       )
     );
-    programs.singularity.systemBinPaths = [ "/run/wrappers/bin" ];
+    programs.singularity.systemBinPaths = [ config.security.wrapperDir ];
     environment.systemPackages = [ cfg.packageOverriden ];
     security.wrappers."${cfg.packageOverriden.projectName}-suid" = lib.mkIf cfg.enableSuid {
       setuid = true;

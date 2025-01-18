@@ -244,12 +244,12 @@ in
               type = with types; nullOr str;
               default =
                 if config.services.postfix.enable && config.services.postfix.setSendmail then
-                  "/run/wrappers/bin/sendmail -i -t"
+                  "${config.security.wrapperDir}/sendmail -i -t"
                 else
                   null;
               defaultText = lib.literalExpression ''
                 if config.services.postfix.enable && config.services.postfix.setSendmail then
-                  "/run/wrappers/bin/sendmail -i -t"
+                  "${config.security.wrapperDir}/sendmail -i -t"
                 else
                   null
               '';

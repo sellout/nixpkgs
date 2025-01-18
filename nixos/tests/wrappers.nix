@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+  { pkgs, ... }:
 let
   userUid = 1000;
   usersGid = 100;
@@ -77,42 +77,42 @@ in
     test_as_regular('${busybox pkgs}/bin/busybox id -g', '${toString usersGid}')
     test_as_regular('${busybox pkgs}/bin/busybox id -rg', '${toString usersGid}')
 
-    test_as_regular('/run/wrappers/bin/suid_root_busybox id -u', '0')
-    test_as_regular('/run/wrappers/bin/suid_root_busybox id -ru', '${toString userUid}')
-    test_as_regular('/run/wrappers/bin/suid_root_busybox id -g', '${toString usersGid}')
-    test_as_regular('/run/wrappers/bin/suid_root_busybox id -rg', '${toString usersGid}')
+    test_as_regular('${config.security.wrapperDir}/suid_root_busybox id -u', '0')
+    test_as_regular('${config.security.wrapperDir}/suid_root_busybox id -ru', '${toString userUid}')
+    test_as_regular('${config.security.wrapperDir}/suid_root_busybox id -g', '${toString usersGid}')
+    test_as_regular('${config.security.wrapperDir}/suid_root_busybox id -rg', '${toString usersGid}')
 
-    test_as_regular('/run/wrappers/bin/sgid_root_busybox id -u', '${toString userUid}')
-    test_as_regular('/run/wrappers/bin/sgid_root_busybox id -ru', '${toString userUid}')
-    test_as_regular('/run/wrappers/bin/sgid_root_busybox id -g', '0')
-    test_as_regular('/run/wrappers/bin/sgid_root_busybox id -rg', '${toString usersGid}')
+    test_as_regular('${config.security.wrapperDir}/sgid_root_busybox id -u', '${toString userUid}')
+    test_as_regular('${config.security.wrapperDir}/sgid_root_busybox id -ru', '${toString userUid}')
+    test_as_regular('${config.security.wrapperDir}/sgid_root_busybox id -g', '0')
+    test_as_regular('${config.security.wrapperDir}/sgid_root_busybox id -rg', '${toString usersGid}')
 
-    test_as_regular_in_userns_mapped_as_root('/run/wrappers/bin/suid_root_busybox id -u', '0')
-    test_as_regular_in_userns_mapped_as_root('/run/wrappers/bin/suid_root_busybox id -ru', '0')
-    test_as_regular_in_userns_mapped_as_root('/run/wrappers/bin/suid_root_busybox id -g', '0')
-    test_as_regular_in_userns_mapped_as_root('/run/wrappers/bin/suid_root_busybox id -rg', '0')
+    test_as_regular_in_userns_mapped_as_root('${config.security.wrapperDir}/suid_root_busybox id -u', '0')
+    test_as_regular_in_userns_mapped_as_root('${config.security.wrapperDir}/suid_root_busybox id -ru', '0')
+    test_as_regular_in_userns_mapped_as_root('${config.security.wrapperDir}/suid_root_busybox id -g', '0')
+    test_as_regular_in_userns_mapped_as_root('${config.security.wrapperDir}/suid_root_busybox id -rg', '0')
 
-    test_as_regular_in_userns_mapped_as_root('/run/wrappers/bin/sgid_root_busybox id -u', '0')
-    test_as_regular_in_userns_mapped_as_root('/run/wrappers/bin/sgid_root_busybox id -ru', '0')
-    test_as_regular_in_userns_mapped_as_root('/run/wrappers/bin/sgid_root_busybox id -g', '0')
-    test_as_regular_in_userns_mapped_as_root('/run/wrappers/bin/sgid_root_busybox id -rg', '0')
+    test_as_regular_in_userns_mapped_as_root('${config.security.wrapperDir}/sgid_root_busybox id -u', '0')
+    test_as_regular_in_userns_mapped_as_root('${config.security.wrapperDir}/sgid_root_busybox id -ru', '0')
+    test_as_regular_in_userns_mapped_as_root('${config.security.wrapperDir}/sgid_root_busybox id -g', '0')
+    test_as_regular_in_userns_mapped_as_root('${config.security.wrapperDir}/sgid_root_busybox id -rg', '0')
 
     # Test that in nonewprivs environment the wrappers simply exec their target.
-    test_as_regular('${pkgs.util-linux}/bin/setpriv --no-new-privs /run/wrappers/bin/suid_root_busybox id -u', '${toString userUid}')
-    test_as_regular('${pkgs.util-linux}/bin/setpriv --no-new-privs /run/wrappers/bin/suid_root_busybox id -ru', '${toString userUid}')
-    test_as_regular('${pkgs.util-linux}/bin/setpriv --no-new-privs /run/wrappers/bin/suid_root_busybox id -g', '${toString usersGid}')
-    test_as_regular('${pkgs.util-linux}/bin/setpriv --no-new-privs /run/wrappers/bin/suid_root_busybox id -rg', '${toString usersGid}')
+    test_as_regular('${pkgs.util-linux}/bin/setpriv --no-new-privs ${config.security.wrapperDir}/suid_root_busybox id -u', '${toString userUid}')
+    test_as_regular('${pkgs.util-linux}/bin/setpriv --no-new-privs ${config.security.wrapperDir}/suid_root_busybox id -ru', '${toString userUid}')
+    test_as_regular('${pkgs.util-linux}/bin/setpriv --no-new-privs ${config.security.wrapperDir}/suid_root_busybox id -g', '${toString usersGid}')
+    test_as_regular('${pkgs.util-linux}/bin/setpriv --no-new-privs ${config.security.wrapperDir}/suid_root_busybox id -rg', '${toString usersGid}')
 
-    test_as_regular('${pkgs.util-linux}/bin/setpriv --no-new-privs /run/wrappers/bin/sgid_root_busybox id -u', '${toString userUid}')
-    test_as_regular('${pkgs.util-linux}/bin/setpriv --no-new-privs /run/wrappers/bin/sgid_root_busybox id -ru', '${toString userUid}')
-    test_as_regular('${pkgs.util-linux}/bin/setpriv --no-new-privs /run/wrappers/bin/sgid_root_busybox id -g', '${toString usersGid}')
-    test_as_regular('${pkgs.util-linux}/bin/setpriv --no-new-privs /run/wrappers/bin/sgid_root_busybox id -rg', '${toString usersGid}')
+    test_as_regular('${pkgs.util-linux}/bin/setpriv --no-new-privs ${config.security.wrapperDir}/sgid_root_busybox id -u', '${toString userUid}')
+    test_as_regular('${pkgs.util-linux}/bin/setpriv --no-new-privs ${config.security.wrapperDir}/sgid_root_busybox id -ru', '${toString userUid}')
+    test_as_regular('${pkgs.util-linux}/bin/setpriv --no-new-privs ${config.security.wrapperDir}/sgid_root_busybox id -g', '${toString usersGid}')
+    test_as_regular('${pkgs.util-linux}/bin/setpriv --no-new-privs ${config.security.wrapperDir}/sgid_root_busybox id -rg', '${toString usersGid}')
 
     # We are only testing the permitted set, because it's easiest to look at with capsh.
     machine.fail(cmd_as_regular('${pkgs.libcap}/bin/capsh --has-p=CAP_CHOWN'))
     machine.fail(cmd_as_regular('${pkgs.libcap}/bin/capsh --has-p=CAP_SYS_ADMIN'))
-    machine.succeed(cmd_as_regular('/run/wrappers/bin/capsh_with_chown --has-p=CAP_CHOWN'))
-    machine.fail(cmd_as_regular('/run/wrappers/bin/capsh_with_chown --has-p=CAP_SYS_ADMIN'))
+    machine.succeed(cmd_as_regular('${config.security.wrapperDir}/capsh_with_chown --has-p=CAP_CHOWN'))
+    machine.fail(cmd_as_regular('${config.security.wrapperDir}/capsh_with_chown --has-p=CAP_SYS_ADMIN'))
 
     # Test that the only user of apparmor policy includes generated by
     # wrappers works. Ideally this'd be located in a test for the module that
@@ -121,6 +121,6 @@ in
     machine.succeed("ping -c 1 127.0.0.1")
 
     # Test that the disabled wrapper is not present.
-    machine.fail("test -e /run/wrappers/bin/disabled_busybox")
+    machine.fail("test -e ${config.security.wrapperDir}/disabled_busybox")
   '';
 }

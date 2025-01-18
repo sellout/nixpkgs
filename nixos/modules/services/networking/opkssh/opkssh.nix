@@ -141,7 +141,7 @@ in
     };
 
     services.openssh = {
-      authorizedKeysCommand = "/run/wrappers/bin/opkssh verify %u %k %t";
+      authorizedKeysCommand = "${config.security.wrapperDir}/opkssh verify %u %k %t";
       authorizedKeysCommandUser = cfg.user;
     };
 

@@ -468,10 +468,10 @@ in
                   # somewhat duplicated with useSendmail but cannot be deduped because of infinite recursion
                   default =
                     if config.mailer.ENABLED && config.mailer.PROTOCOL == "sendmail" then
-                      "/run/wrappers/bin/sendmail"
+                      "${config.security.wrapperDir}/sendmail"
                     else
                       "sendmail";
-                  defaultText = lib.literalExpression ''if config.${options.mailer.ENABLED} && config.${options.mailer.PROTOCOL} == "sendmail" then "/run/wrappers/bin/sendmail" else "sendmail"'';
+                  defaultText = lib.literalExpression ''if config.${options.mailer.ENABLED} && config.${options.mailer.PROTOCOL} == "sendmail" then "${config.security.wrapperDir}/sendmail" else "sendmail"'';
                   description = "Path to sendmail binary or script.";
                 };
               };

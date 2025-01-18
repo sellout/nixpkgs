@@ -157,7 +157,7 @@ in
 
           exec=exec
           if [[ "$USER" != knot-resolver ]]; then
-            exec='exec /run/wrappers/bin/sudo -u knot-resolver'
+            exec='exec ${config.security.wrapperDir}/sudo -u knot-resolver'
           fi
           $exec ${lib.getExe pkgs.socat} - /run/knot-resolver/control/''${1:-1}
         '')

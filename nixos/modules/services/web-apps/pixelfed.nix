@@ -43,7 +43,7 @@ let
     cd ${pixelfed}
     sudo=exec
     if [[ "$USER" != ${user} ]]; then
-      sudo='exec /run/wrappers/bin/sudo -u ${user}'
+      sudo='exec ${config.security.wrapperDir}/sudo -u ${user}'
     fi
     $sudo ${phpPackage}/bin/php artisan "$@"
   '';

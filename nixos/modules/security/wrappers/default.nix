@@ -238,8 +238,9 @@ in
       default = "/run/wrappers/bin";
       internal = true;
       description = ''
-        This option defines the path to the wrapper programs. It
-        should not be overridden.
+        This option defines the path to the wrapper programs. Some packages
+        don’t yet allow it to be overridden (generally because of hardcoded
+        values in non-Nix files), but those _should_ `assert` when it is.
       '';
     };
   };

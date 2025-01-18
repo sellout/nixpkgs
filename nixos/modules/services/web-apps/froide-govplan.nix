@@ -22,7 +22,7 @@ let
     text = ''
       SUDO="exec"
       if [[ "$USER" != govplan ]]; then
-        SUDO="exec /run/wrappers/bin/sudo -u govplan"
+        SUDO="exec ${config.security.wrapperDir}/sudo -u govplan"
       fi
       $SUDO env ${lib.getExe pkg} "$@"
     '';

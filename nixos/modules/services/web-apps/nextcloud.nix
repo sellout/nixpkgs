@@ -170,8 +170,8 @@ let
             -- \
             ${command}
         elif [[ "$USER" != nextcloud ]]; then
-          if [[ -x /run/wrappers/bin/sudo ]]; then
-            exec /run/wrappers/bin/sudo \
+          if [[ -x ${config.security.wrapperDir}/sudo ]]; then
+            exec ${config.security.wrapperDir}/sudo \
               --preserve-env=CREDENTIALS_DIRECTORY \
               --preserve-env=OC_PASS \
               --preserve-env=NC_PASS \
@@ -1559,7 +1559,7 @@ in
             phpEnv = {
               CREDENTIALS_DIRECTORY = "/run/phpfpm-nextcloud/credentials/";
               NEXTCLOUD_CONFIG_DIR = "${datadir}/config";
-              PATH = "/run/wrappers/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:/usr/bin:/bin";
+              PATH = "${config.security.wrapperDir}:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:/usr/bin:/bin";
             };
             settings =
               lib.mapAttrs (name: lib.mkDefault) {

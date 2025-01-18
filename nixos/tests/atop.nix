@@ -42,10 +42,10 @@ let
     wrapper =
       present:
       if present then
-        path "atop" "/run/wrappers/bin/atop"
+        path "atop" "${config.security.wrapperDir}/atop"
         + ''
           with subtest("Wrapper should be setuid root"):
-              stat = machine.succeed("stat --printf '%a %u' /run/wrappers/bin/atop")
+              stat = machine.succeed("stat --printf '%a %u' ${config.security.wrapperDir}/atop")
               assert stat == "4511 0", f"Wrapper stat is {stat}, expected '4511 0'"
         ''
       else

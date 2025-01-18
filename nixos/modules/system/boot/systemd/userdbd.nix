@@ -77,7 +77,7 @@ in
     };
 
     services.openssh = lib.mkIf cfg.enableSSHSupport {
-      authorizedKeysCommand = "/run/wrappers/bin/userdbctl ssh-authorized-keys %u";
+      authorizedKeysCommand = "${config.security.wrapperDir}/userdbctl ssh-authorized-keys %u";
       authorizedKeysCommandUser = "root";
     };
   };
