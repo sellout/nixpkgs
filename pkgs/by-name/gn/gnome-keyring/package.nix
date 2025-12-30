@@ -106,7 +106,7 @@ stdenv.mkDerivation rec {
 
       for file in ''${files[*]}; do
         substituteInPlace $file \
-          --replace "$out/bin/gnome-keyring-daemon" "/run/wrappers/bin/gnome-keyring-daemon"
+          --replace "$out/bin/gnome-keyring-daemon" "${config.security.wrapperDir}/gnome-keyring-daemon"
       done
     '';
 

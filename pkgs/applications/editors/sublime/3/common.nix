@@ -18,7 +18,7 @@
   libredirect,
   makeWrapper,
   wrapGAppsHook3,
-  pkexecPath ? "/run/wrappers/bin/pkexec",
+  pkexecPath ? "${config.security.wrapperDir}/pkexec",
   openssl,
   bzip2,
   bash,

@@ -7,7 +7,7 @@
   procps,
   replaceVars,
   zlib,
-  wrapperDir ? "/run/wrappers/bin",
+  wrapperDir ? config.security.wrapperDir,
 }:
 
 stdenv.mkDerivation (finalAttrs: {

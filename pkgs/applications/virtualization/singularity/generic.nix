@@ -67,8 +67,8 @@
   # useful to specify directories containing binaries with SUID bit set.
   # The paths take higher precedence over the FHS system PATH specified
   # inside the upstream source code.
-  # Include "/run/wrappers/bin" by default for the convenience of NixOS users.
-  systemBinPaths ? [ "/run/wrappers/bin" ],
+  # Include `config.security.wrapperDir` by default for the convenience of NixOS users.
+  systemBinPaths ? [ config.security.wrapperDir ],
   # External LOCALSTATEDIR
   externalLocalStateDir ? null,
   # Remove the symlinks to `singularity*` when projectName != "singularity"

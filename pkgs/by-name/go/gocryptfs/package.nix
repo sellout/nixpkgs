@@ -55,7 +55,7 @@ buildGoModule rec {
     popd
   '';
 
-  # use --suffix here to ensure we don't shadow /run/wrappers/bin/fusermount,
+  # use --suffix here to ensure we don't shadow ${config.security.wrapperDir}/fusermount,
   # as the setuid wrapper is required to use gocryptfs as non-root on NixOS
   postInstall = ''
     wrapProgram $out/bin/gocryptfs \

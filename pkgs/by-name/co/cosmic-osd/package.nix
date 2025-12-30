@@ -52,7 +52,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     "target/${stdenv.hostPlatform.rust.cargoShortTarget}"
   ];
 
-  env.POLKIT_AGENT_HELPER_1 = "/run/wrappers/bin/polkit-agent-helper-1";
+  env.POLKIT_AGENT_HELPER_1 = "${config.security.wrapperDir}/polkit-agent-helper-1";
 
   passthru = {
     tests = {

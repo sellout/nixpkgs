@@ -102,7 +102,7 @@ let
     text = ''
       export PS1='${name}-fhsenv:\u@\h:\w\$ '
       export LOCALE_ARCHIVE="''${LOCALE_ARCHIVE:-/usr/lib/locale/locale-archive}"
-      export PATH="/run/wrappers/bin:/usr/bin:/usr/sbin:$PATH"
+      export PATH="${config.security.wrapperDir}:/usr/bin:/usr/sbin:$PATH"
       export TZDIR='/etc/zoneinfo'
 
       # XDG_DATA_DIRS is used by pressure-vessel (steam proton) and vulkan loaders to find the corresponding icd

@@ -19,7 +19,7 @@
   libredirect,
   makeWrapper,
   wrapGAppsHook3,
-  pkexecPath ? "/run/wrappers/bin/pkexec",
+  pkexecPath ? "${config.security.wrapperDir}/pkexec",
   writeShellScript,
   common-updater-scripts,
   curl,

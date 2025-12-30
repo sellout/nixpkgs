@@ -7,8 +7,8 @@
   flex,
   pam,
   perl,
-  sendmailPath ? "/run/wrappers/bin/sendmail",
-  atWrapperPath ? "/run/wrappers/bin/at",
+  sendmailPath ? "${config.security.wrapperDir}/sendmail",
+  atWrapperPath ? "${config.security.wrapperDir}/at",
 }:
 
 stdenv.mkDerivation rec {

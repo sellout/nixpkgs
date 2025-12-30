@@ -165,7 +165,7 @@ stdenv.mkDerivation rec {
                                                           --replace-fail "msgfmt" "${gettext}/bin/msgfmt"
       substituteInPlace ./modules/cs_info.py              --replace-fail "lspci" "${pciutils}/bin/lspci"
       substituteInPlace ./modules/cs_themes.py            --replace-fail "$out/share/cinnamon/styles.d" "/run/current-system/sw/share/cinnamon/styles.d"
-      substituteInPlace ./modules/cs_user.py              --replace-fail "/usr/bin/passwd" "/run/wrappers/bin/passwd"
+      substituteInPlace ./modules/cs_user.py              --replace-fail "/usr/bin/passwd" "${config.security.wrapperDir}/passwd"
     popd
 
     # In preFixup we make these executable.

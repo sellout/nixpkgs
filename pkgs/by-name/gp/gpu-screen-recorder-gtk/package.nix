@@ -18,7 +18,7 @@
   libXrandr,
   wayland,
   wrapGAppsHook3,
-  wrapperDir ? "/run/wrappers/bin",
+  wrapperDir ? config.security.wrapperDir,
   gitUpdater,
 }:
 

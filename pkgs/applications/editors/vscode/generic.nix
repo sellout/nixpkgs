@@ -348,7 +348,7 @@ stdenv.mkDerivation (
           unpacked="resources/app/node_modules"
           asar extract "$packed" "$unpacked"
           substituteInPlace $unpacked/@vscode/sudo-prompt/index.js \
-            --replace-fail "/usr/bin/pkexec" "/run/wrappers/bin/pkexec" \
+            --replace-fail "/usr/bin/pkexec" "${config.security.wrapperDir}/pkexec" \
             --replace-fail "/bin/bash" "${bash}/bin/bash"
           rm -rf "$packed"
         ''

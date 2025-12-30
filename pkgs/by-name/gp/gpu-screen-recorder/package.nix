@@ -22,7 +22,7 @@
   libXi,
   libXrandr,
   libXfixes,
-  wrapperDir ? "/run/wrappers/bin",
+  wrapperDir ? config.security.wrapperDir,
   gitUpdater,
 }:
 

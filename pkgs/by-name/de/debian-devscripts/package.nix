@@ -19,7 +19,7 @@
   bash-completion,
   help2man,
   nix-update-script,
-  sendmailPath ? "/run/wrappers/bin/sendmail",
+  sendmailPath ? "${config.security.wrapperDir}/sendmail",
 }:
 
 let

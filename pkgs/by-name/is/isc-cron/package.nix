@@ -21,7 +21,7 @@ stdenv.mkDerivation (finalAttrs: {
       inherit sendmailPath;
       viPath = lib.getExe' vim "vim";
       defPath = lib.concatStringsSep ":" [
-        "/run/wrappers/bin"
+        config.security.wrapperDir
         "/nix/var/nix/profiles/default/bin"
         "/run/current-system/sw/bin"
         "/usr/bin"

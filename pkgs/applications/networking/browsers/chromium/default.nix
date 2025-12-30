@@ -165,9 +165,9 @@ stdenv.mkDerivation {
       ed -v -s "$out/bin/chromium" << EOF
       2i
 
-      if [ -x "/run/wrappers/bin/${sandboxExecutableName}" ]
+      if [ -x "${config.security.wrapperDir}/${sandboxExecutableName}" ]
       then
-        export CHROME_DEVEL_SANDBOX="/run/wrappers/bin/${sandboxExecutableName}"
+        export CHROME_DEVEL_SANDBOX="${config.security.wrapperDir}/${sandboxExecutableName}"
       else
         export CHROME_DEVEL_SANDBOX="$sandbox/bin/${sandboxExecutableName}"
       fi
