@@ -50,15 +50,15 @@ GEM
       multi_json
     excon (1.2.5)
       logger
-    faraday (2.12.2)
+    faraday (2.14.1)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
     faraday-excon (2.3.0)
       excon (>= 1.0.0)
       faraday (>= 2.11.0, < 3)
-    faraday-net_http (3.4.0)
-      net-http (>= 0.5.0)
+    faraday-net_http (3.4.2)
+      net-http (~> 0.5)
     fluent-config-regexp-type (1.0.0)
       fluentd (> 1.0.0, < 2)
     fluent-plugin-cloudwatch-logs (0.14.3)
@@ -119,15 +119,15 @@ GEM
     google-protobuf (3.25.6-x86_64-darwin)
     http_parser.rb (0.8.0)
     jmespath (1.6.2)
-    json (2.10.1)
-    logger (1.6.6)
+    json (2.18.1)
+    logger (1.7.0)
     ltsv (0.1.2)
     mongo (2.18.3)
       bson (>= 4.14.1, < 5.0.0)
     msgpack (1.8.0)
     multi_json (1.15.0)
-    net-http (0.6.0)
-      uri
+    net-http (0.9.1)
+      uri (>= 0.11.1)
     public_suffix (6.0.1)
     rake (13.2.1)
     ruby-kafka (1.5.0)
@@ -142,7 +142,7 @@ GEM
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2025.1)
       tzinfo (>= 1.0.0)
-    uri (1.0.3)
+    uri (1.1.1)
     webhdfs (0.11.0)
       addressable
     webrick (1.9.1)
